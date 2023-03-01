@@ -7,7 +7,7 @@ This is a Python script that cleans data in a CSV file. It removes duplicates, e
 1. Clone this repository:
 
     ```
-    git clone https://github.com/your-username/csv_data_cleaner.git
+    git clone https://github.com/btt1996/csv_data_cleaner.git
     ```
 
 2. Install the required packages:
@@ -40,4 +40,4 @@ This project is licensed under the MIT License. Feel free to use and modify this
 
 ## Author
 
-This script was created by [Your Name](https://github.com/your-username).
+This script was created by btt1996 (https://github.com/Btt1996).
