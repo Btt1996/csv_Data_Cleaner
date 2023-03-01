@@ -1,21 +1,34 @@
-from data_cleaning import clean_data
-from tqdm import tqdm
+import os
+import subprocess
 
+# Define a list of available scripts and their corresponding filenames
+scripts = [
+    {"name": "Clean CSV data", "filename": "clean_csv.py"},
+    {"name": "Before-cleaning analysis", "filename": "before_cleaning_analysis.py"},
+    {"name": "After-cleaning analysis", "filename": "after_cleaning_analysis.py"},
+    {"name": "Plot statistics", "filename": "plot_statistics.py"},
+    {"name": "Convert to database format", "filename": "convert_to_db.py"},
+    # Add more scripts here as needed
+]
 
-if __name__ == '__main__':
-    # Define input parameters
-    file_path = 'data.csv'
-    none_values = ['none', 'unfound', 'unknown']
-    allowed_values = {'column1': ['value1', 'value2'], 'column2': ['value3', 'value4']}
+# Display the available scripts and prompt the user to choose one
+print("Available scripts:")
+for i, script in enumerate(scripts):
+    print(f"{i+1}. {script['name']}")
+choice = input("Enter the number of the script you want to run: ")
+try:
+    choice = int(choice)
+    if choice < 1 or choice > len(scripts):
+        raise ValueError
+except ValueError:
+    print("Invalid choice. Please enter a number between 1 and", len(scripts))
+    exit()
 
-    # Clean the data
-    print("Cleaning the data...")
-    cleaned_data = clean_data(file_path, none_values, allowed_values)
+# Run the selected script
+script_name = scripts[choice-1]["name"]
+script_filename = scripts[choice-1]["filename"]
+print(f"\nRunning script: {script_name}\n")
+subprocess.run(["python", script_filename])
 
-    # Save the cleaned data to a new CSV file
-    print("Saving the cleaned data...")
-    cleaned_data.to_csv('cleaned_data.csv', index=False)
-
-    # Add a progress bar for each task running
-    for i in tqdm(range(10)):
-        pass  # Do some dummy task to demonstrate the progress bar
+# Wait for user to press Enter before exiting
+input("\nPress Enter to exit...")
